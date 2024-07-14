@@ -1,19 +1,19 @@
-import { Inter } from "next/font/google";
 import "../globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
   ClerkProvider,
-  SignInButton, 
+  SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+  UserButton,
+} from "@clerk/nextjs";
 import { Header } from "../../components/partials/Header";
 import { Footer } from "../../components/partials/Footer";
+import localFont from "next/font/local";
 
 config.autoAddCss = false;
-const inter = Inter({ subsets: ["latin"] });
+// const myFont = localFont({ src: "./public/fonts/SFUFuturaBook.TTF" });
 
 export const metadata = {
   title: "The Time",
@@ -23,13 +23,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={inter.className}>   
-        <Header/>
-        {children}
-        <Footer/>
-      </body>
-    </html>
+      <html lang="en">
+        <body className="">
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
