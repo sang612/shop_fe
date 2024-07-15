@@ -22,10 +22,10 @@ export const Header = () => {
 
   return (
     <div>
-      <div className="h-[90px] w-full">
+      <div className="h-auto w-full fixed top-0 left-0 z-[60]">
         <div className="h-full w-full">
           <div className="h-[90px]">
-            <div className="h-full flex flex-row flex-nowrap items-center justify-between w-full p-[15px] mx-auto bg-orange-950">
+            <div className="h-full flex flex-row flex-nowrap items-center justify-between w-full p-[15px] mx-auto bg-transparent">
               <div
                 id="logo"
                 className="w-[300px] order-2 text-center my-0 md:mx-[30px] mx-auto leading-[1] max-h-full"
@@ -180,7 +180,7 @@ export const Header = () => {
               </div>
             </div>
           </div>
-          <div className="header-bottom min-h-[55px] relative items-center z-10 md:flex hidden">
+          <div className="header-bottom min-h-[55px] relative items-center z-10 md:flex hidden bg-transparent">
             <div className="h-full flex flex-row flex-nowrap items-center justify-between w-full px-[15px] mx-auto">
               <div className="my-0 mx-auto ">
                 <ul className="justify-center w-full relative flex flex-row flex-wrap items-center m-0 p-0">
@@ -712,7 +712,8 @@ export const Header = () => {
             </div>
           </div>
         </nav> */}
-          <div className="relative h-[350px] overflow-hidden bg-[url('https://tecdn.b-cdn.net/img/new/slides/041.webp')] bg-cover bg-[50%] bg-no-repeat">
+
+          {/* <div className="relative h-[350px] overflow-hidden bg-[url('https://tecdn.b-cdn.net/img/new/slides/041.webp')] bg-cover bg-[50%] bg-no-repeat">
             <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-black/60 bg-fixed">
               <div className="flex h-full items-center justify-center">
                 <div className="px-6 text-center text-white md:px-12">
@@ -729,14 +730,14 @@ export const Header = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </header>
       </div>
       {/* <div className="absolute top-0 h-screen left-0 w-full z-[1043]"> */}
 
       {isOpen && (
         <div
-          className="fixed inset-0 bg-[#0b0b0b] opacity-75 z-40 md:hidden"
+          className="fixed inset-0 bg-[#0b0b0b] opacity-75 z-[60] md:hidden"
           onClick={toggleNav}
         ></div>
       )}
