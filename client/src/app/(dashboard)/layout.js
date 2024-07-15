@@ -10,10 +10,8 @@ import {
 } from "@clerk/nextjs";
 import { Header } from "../../components/partials/Header";
 import { Footer } from "../../components/partials/Footer";
-import localFont from "next/font/local";
 
 config.autoAddCss = false;
-// const myFont = localFont({ src: "./public/fonts/SFUFuturaBook.TTF" });
 
 export const metadata = {
   title: "The Time",

@@ -12,7 +12,38 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Carousel = () => {
+const slideItem = [
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/05/ref-1106-1418-4-320x400.jpg",
+    url2: "https://donghocodien.com/wp-content/uploads/2024/05/ref-1106-1418-3-300x375.jpg",
+    model: "BLANCPAIN VILLERET ULTRA-SLIM POWER RESERVE ref 1106-1418",
+    price: "6300",
+    key: 1,
+  },
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/04/ref-PAM372-10-300x375.jpg",
+    url2: "https://donghocodien.com/wp-content/uploads/2024/04/ref-PAM372-9-300x375.jpg",
+    model: "PANERAI LUMINOR 1950 3 DAYS POWER RESERVED ref PAM00372",
+    price: "5500",
+    key: 2,
+  },
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/04/ref-Q2708411-2-768x960.jpg",
+    url2: "https://donghocodien.com/wp-content/uploads/2024/04/ref-Q2708411-10-300x375.jpg",
+    model: "JAEGER-LECOULTRE REVERSO GRANDE TAILE ref Q2708411",
+    price: "5400",
+    key: 3,
+  },
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/07/ref-78093-1-320x400.jpg",
+    url2: "	https://donghocodien.com/wp-content/uploads/2024/07/ref-78093-2-300x375.jpg",
+    model: "CARTIER TANK NORMALE ref 78093",
+    price: "5320",
+    key: 4,
+  },
+];
+
+export const ShopNowCarousel = () => {
   const swiperElRef = useRef(null);
 
   useEffect(() => {
@@ -61,74 +92,29 @@ export const Carousel = () => {
   }, []);
 
   return (
-    // <div>
-    //   <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    //     <a href="#">
-    //       <img className="rounded-t-lg" src="./1.png" alt="" />
-    //     </a>
-    //     <div className="p-5">
-    //       <a href="#">
-    //         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-    //           Noteworthy technology acquisitions 2021
-    //         </h5>
-    //       </a>
-    //       <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-    //         Here are the biggest enterprise technology acquisitions of 2021 so
-    //         far, in reverse chronological order.
-    //       </p>
-    //       <a
-    //         href="#"
-    //         className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    //       >
-    //         Read more
-    //         <svg
-    //           className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-    //           aria-hidden="true"
-    //           xmlns="http://www.w3.org/2000/svg"
-    //           fill="none"
-    //           viewBox="0 0 14 10"
-    //         >
-    //           <path
-    //             stroke="currentColor"
-    //             strokeLinecap="round"
-    //             strokeLinejoin="round"
-    //             strokeWidth="2"
-    //             d="M1 5h12m0 0L9 1m4 4L9 9"
-    //           />
-    //         </svg>
-    //       </a>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="z-[50] md:h-screen h-[75vh] w-full relative group">
+    <div className="max-w-[1065px] w-full relative group">
       <swiper-container
         ref={swiperElRef}
-        slides-per-view="1"
+        slides-per-view="3"
         speed="500"
         init="false"
         loop="true"
       >
-        <swiper-slide>
-          <Slide
-            content={`Patek Philippe luôn là huyền thoại của ngành đông hồ?`}
-            url={`#`}
-            bg={`https://donghocodien.com/wp-content/uploads/2022/03/ref-3940J-4.jpg`}
-          />
-        </swiper-slide>
-        <swiper-slide>
-          <Slide
-            content={`Rolex cổ điển vẫn luôn mang sự thu hút riêng, liệu bạn có hứng thú?`}
-            url={`#`}
-            bg={`https://donghocodien.com/wp-content/uploads/2023/05/ref-1601-2-1.jpg`}
-          />
-        </swiper-slide>
-        <swiper-slide>
-          <Slide
-            content={`Nơi bạn có thể tìm thấy những chiếc đồng hồ Omega cổ điển đầy uy tín`}
-            url={`#`}
-            bg={`https://donghocodien.com/wp-content/uploads/2023/07/ref-311.30.40.30.01.001-5.jpg`}
-          />
-        </swiper-slide>
+        {slideItem.map((item) => {
+          return (
+            // <div key={item.key}>
+            <swiper-slide key={item.key}>
+              <Slide
+                key={2}
+                url={item.url}
+                url2={item.url2}
+                price={item.price}
+                model={item.model}
+              />
+            </swiper-slide>
+            // </div>
+          );
+        })}
       </swiper-container>
       <div
         className="prev-arrow hidden md:inline-block left-[50px] m-[5px] cursor-pointer hover:bg-[#000] hover:opacity-100 select-none bg-transparent
