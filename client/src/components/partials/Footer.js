@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className="absolute bottom-0 w-full">
+    <div className=" w-full">
       <footer className="flex flex-col items-center bg-zinc-50 text-center text-surface bg-orange-950 dark:text-white ">
         <div className="container px-6 pt-6">
           <div className="mb-6 flex justify-center space-x-2">
@@ -113,7 +113,7 @@ export const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="w-full bg-orange-950 p-4 text-center">
+        <div className="w-full bg-orange-950 p-4 text-center text-[#fff]">
           © 2024 Copyright:
           <a href="https://www.instagram.com/manminus.vintage/" target="_blank">
             {" "}

@@ -7,11 +7,12 @@ import {
   faChevronDown,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSub, setIsOpenSub] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -20,37 +21,70 @@ export const Header = () => {
     setIsOpenSub(!isOpenSub);
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div>
-      <div className="h-auto w-full fixed top-0 left-0 z-[60]">
+      <div
+        className={`h-auto w-full z-[60] ${
+          isScrolled
+            ? "fixed top-0 left-0 shadow-[1px_1px_10px_rgba(0,0,0,0.15)] animate-[stuckMoveDown_.6s]"
+            : "absolute top-0 left-0"
+        }`}
+      >
         <div className="h-full w-full">
           <div className="h-[90px]">
-            <div className="h-full flex flex-row flex-nowrap items-center justify-between w-full p-[15px] mx-auto bg-transparent">
+            <div
+              className={`h-full flex flex-row flex-nowrap items-center justify-between w-full p-[15px] mx-auto 
+              ${isScrolled ? "bg-[#fff] opacity-90" : "bg-transparent"}`}
+            >
               <div
                 id="logo"
                 className="w-[300px] order-2 text-center my-0 md:mx-[30px] mx-auto leading-[1] max-h-full"
               >
                 <a href="" title="Spacetime - Vintage Watch" rel="home">
-                  <img
-                    width="300"
-                    height="100"
-                    src="https://donghocodien.com/wp-content/uploads/2023/06/Artboard-2@10x-8.png"
-                    alt="Spacetime"
-                    className="max-h-[90px] transition-[max-height] duration-500 block mx-0 my-auto w-auto hidden"
-                  ></img>
-                  <img
-                    width="300"
-                    height="100"
-                    src="https://donghocodien.com/wp-content/uploads/2023/06/Artboard-1@10x-8.png"
-                    alt="Spacetime"
-                    className="max-h-[90px] transition-[max-height] duration-500 block mx-0 my-auto w-auto"
-                  ></img>
+                  {isScrolled ? (
+                    <img
+                      width="300"
+                      height="100"
+                      src="https://donghocodien.com/wp-content/uploads/2023/06/Artboard-2@10x-8.png"
+                      alt="Spacetime"
+                      className="max-h-[90px] transition-[max-height] duration-500 block mx-0 my-auto w-auto"
+                    ></img>
+                  ) : (
+                    <img
+                      width="300"
+                      height="100"
+                      src="https://donghocodien.com/wp-content/uploads/2023/06/Artboard-1@10x-8.png"
+                      alt="Spacetime"
+                      className="max-h-[90px] transition-[max-height] duration-500 block mx-0 my-auto w-auto"
+                    ></img>
+                  )}
                 </a>
               </div>
               <div className="order-1 flex-1 mr-auto max-h-full hidden md:block">
                 <ul className="justify-start w-full relative flex flex-row flex-wrap items-center m-0 p-0 list-disc">
                   <li className="text-white font-[.85rem] first:ml-0 my-0 mx-[11px] inline-block list-none p-0 relative transition-colors duration-300">
-                    <div className="text-white font-[.85rem]">13:48:33</div>
+                    <div
+                      className={`${
+                        isScrolled ? "text-[#000]" : "text-[#fff]"
+                      } font-[.85rem]`}
+                    >
+                      13:48:33
+                    </div>
                   </li>
                   <li className="text-white font-[.85rem] first:ml-0 last:mx-0 my-0 mx-[11px] inline-block list-none p-0 relative transition-colors duration-300">
                     <div className="text-white font-[1rem] inline-block align-middle">
@@ -100,18 +134,25 @@ export const Header = () => {
               </div>
               <div className="order-3 flex-1 ml-auto max-h-full">
                 <ul className="justify-end w-full relative flex flex-row md:flex-wrap flex-nowrap items-center m-0 p-0 list-disc">
-                  <li className="text-white font-[.85rem] first:ml-0 last:mx-0 my-0 mx-[11px] hidden md:inline-block list-none p-0 relative transition-colors duration-300">
+                  <li
+                    className={`font-[.85rem] first:ml-0 last:mx-0 my-0 mx-[11px] hidden md:inline-block list-none p-0 relative transition-colors duration-300
+                    ${isScrolled ? "text-[#000]" : "text-[#fff]"}`}
+                  >
                     <div className="flex flex-row items-center gap-x-[8px]">
                       <a
                         href="https://donghocodien.com"
-                        className="text-white no-underline touch-manipulation bg-transparent"
+                        className={`no-underline touch-manipulation bg-transparent ${
+                          isScrolled ? "text-[#000]" : "text-[#fff]"
+                        }`}
                       >
                         VI
                       </a>
                       <span>|</span>
                       <a
                         href="https://spacetimevintagewatch.com/"
-                        className="text-white no-underline touch-manipulation bg-transparent"
+                        className={`no-underline touch-manipulation bg-transparent ${
+                          isScrolled ? "text-[#000]" : "text-[#fff]"
+                        }`}
                       >
                         EN
                       </a>
@@ -121,9 +162,15 @@ export const Header = () => {
                     <a href="">
                       <span className="inline-block align-middle relative h-auto group">
                         <strong
-                          className="border-white rounded-none font-bold mx-0 my-[.3em] border-[2px] border-solid relative inline-flex items-center justify-center text-center w-[28.15px] h-[28.15px] text-[12.8px] leading-[28.15px]
-                    after:border-white after:transition-[height] after:duration-100 after:ease-out after:bottom-full after:mb-0 after:ml-[-7px] after:h-[8px] after:w-[14px] after:left-1/2 after:content-[' '] after:absolute after:pointer-events-none after:border-[2px] after:border-solid after:rounded-tl-[99px] after:rounded-tr-[99px] after:rounded-b-none
-                    group-hover:after:h-[10px]"
+                          className={` rounded-none font-bold mx-0 my-[.3em] border-[2px] border-solid relative inline-flex items-center justify-center text-center w-[28.15px] h-[28.15px] text-[12.8px] leading-[28.15px]
+                    after:transition-[height] after:duration-100 after:ease-out after:bottom-full after:mb-0 after:ml-[-7px] after:h-[8px] after:w-[14px] after:left-1/2 after:content-[' '] after:absolute after:pointer-events-none after:border-[2px] after:border-solid after:rounded-tl-[99px] after:rounded-tr-[99px] after:rounded-b-none
+                    group-hover:after:h-[10px]
+                    ${
+                      isScrolled
+                        ? "text-[#000] border-[#000] after:border-[#000]"
+                        : "text-[#fff] border-[#fff] after:border-[#fff]"
+                    }
+                    `}
                         >
                           0
                         </strong>
@@ -131,7 +178,10 @@ export const Header = () => {
                       <div id="card-popup" className="hidden"></div>
                     </a>
                   </li>
-                  <li className="z-[30] group text-white font-[.85rem] first:ml-0 last:mr-0 my-0 mx-[11px] inline-block list-none p-0 relative transition-colors duration-300">
+                  <li
+                    className={`z-[30] group font-[.85rem] first:ml-0 last:mr-0 my-0 mx-[11px] inline-block list-none p-0 relative transition-colors duration-300
+                    ${isScrolled ? "text-[#000]" : "text-[#fff]"}`}
+                  >
                     <a href="#">
                       <FontAwesomeIcon
                         icon={faSearch}
@@ -140,7 +190,7 @@ export const Header = () => {
                     </a>
 
                     <ul
-                      className="nav-dropdown z-10 absolute left-auto right-[5px] mt-2 bg-white text-[#777] border-[2px] border-solid border-[#ddd] shadow-[1px_1px_15px_rgba(0,0,0,0.15)]
+                      className="nav-dropdown z-50 absolute left-auto right-[5px] mt-2 bg-white text-[#777] border-[2px] border-solid border-[#ddd] shadow-[1px_1px_15px_rgba(0,0,0,0.15)]
                   p-[20px] min-w-[260px] text-left opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
                       <li>
@@ -180,7 +230,13 @@ export const Header = () => {
               </div>
             </div>
           </div>
-          <div className="header-bottom min-h-[55px] relative items-center z-10 md:flex hidden bg-transparent">
+          <div
+            className={`header-bottom min-h-[55px] relative items-center z-10 md:flex hidden ${
+              isScrolled
+                ? "bg-[rgba(255,255,255,0.9)] !text-[#000]"
+                : "bg-transparent"
+            }`}
+          >
             <div className="h-full flex flex-row flex-nowrap items-center justify-between w-full px-[15px] mx-auto">
               <div className="my-0 mx-auto ">
                 <ul className="justify-center w-full relative flex flex-row flex-wrap items-center m-0 p-0">
@@ -192,8 +248,13 @@ export const Header = () => {
                   >
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex
+                  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       Watches
                       <FontAwesomeIcon
@@ -565,8 +626,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       swatch
                     </a>
@@ -574,8 +639,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       consignment
                     </a>
@@ -583,8 +652,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       articles
                     </a>
@@ -592,8 +665,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       contact
                     </a>
@@ -601,8 +678,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       about us
                     </a>
@@ -610,8 +691,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       archives
                     </a>
@@ -619,8 +704,12 @@ export const Header = () => {
                   <li className="first:ml-0 my-0 mx-[13px] inline-block list-none p-0 relative transition-[background-color] duration-300">
                     <a
                       href=""
-                      className="tracking-[2px] text-[rgba(255,255,255,0.8)] font-[700] leading-[16px] text-[.8em] uppercase
-                  transition-all duration-200 py-[10px] px-0 inline-flex hover:text-white"
+                      className={`tracking-[2px] font-[700] leading-[16px] text-[.8em] uppercase
+                  transition-all duration-200 py-[10px] px-0 inline-flex  ${
+                    isScrolled
+                      ? "text-[#000] hover:text-[#450a0a]"
+                      : "text-[rgba(255,255,255,0.8)] hover:text-white"
+                  }`}
                     >
                       consign your watch
                     </a>

@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -26,9 +22,29 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/(auth)/sign-in/[[...sign-in]]/page.js", "src/app/(auth)/sign-up/[[...sign-up]]/page.js", "src/app/(dashboard)/layout.js", "src/app/(auth)/layout.js", "src/app/(dashboard)/page.js", "src/components/Carousel/index.js", "src/components/partials/Footer.js", "src/components/partials/Header.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/app/(auth)/sign-in/[[...sign-in]]/page.js",
+    "src/app/(auth)/sign-up/[[...sign-up]]/page.js",
+    "src/app/(dashboard)/layout.js",
+    "src/app/(auth)/layout.js",
+    "src/app/(dashboard)/page.js",
+    "src/components/Carousel/index.js",
+    "src/components/partials/Footer.js",
+    "src/components/partials/Header.js",
+    "src/components/Admin/Sidebar/index.js",
+    "src/components/Admin/Layouts/DefaultLayout.js",
+    "src/components/Admin/Header/index.js",
+    "src/components/Admin/Header/DarkModeSwitcher.js",
+    "src/components/Admin/Header/DropdownNotification.js",
+    "src/components/Admin/Header/DropdownMessage.js",
+    "src/components/ClickOutside.js",
+    "src/components/Admin/Sidebar/SidebarItem.js",
+    "src/components/Admin/Sidebar/SidebarDropdown.js",
+    "src/components/Breadcrumbs/Breadcrumb.js",
+    "src/components/Admin/SelectGroup/SelectGroupOne.js",
+    "src/components/Admin/CardDataStats.js",
+    "src/components/Admin/Charts/ChartThree.js",
+    "src/components/Admin/Charts/ChartOne.js"
+  ],
+  "exclude": ["node_modules"]
 }
