@@ -15,35 +15,25 @@ import {
 const slideItem = [
   {
     url: "https://donghocodien.com/wp-content/uploads/2024/05/ref-1106-1418-4-320x400.jpg",
-    url2: "https://donghocodien.com/wp-content/uploads/2024/05/ref-1106-1418-3-300x375.jpg",
-    model: "BLANCPAIN VILLERET ULTRA-SLIM POWER RESERVE ref 1106-1418",
-    price: "6300",
+    title: "TẠI SAO BẠN NÊN YÊU THÍCH ĐỒNG HỒ CỔ ĐIỂN?",
+    date: "November 19, 2021",
     key: 1,
   },
   {
     url: "https://donghocodien.com/wp-content/uploads/2024/04/ref-PAM372-10-300x375.jpg",
-    url2: "https://donghocodien.com/wp-content/uploads/2024/04/ref-PAM372-9-300x375.jpg",
-    model: "PANERAI LUMINOR 1950 3 DAYS POWER RESERVED ref PAM00372",
-    price: "5500",
+    title: "“LES MUST DE CARTIER!” – NGUỒN GỐC & SỨC MẠNH",
+    date: "December 27, 2021",
     key: 2,
   },
   {
     url: "https://donghocodien.com/wp-content/uploads/2024/04/ref-Q2708411-2-768x960.jpg",
-    url2: "https://donghocodien.com/wp-content/uploads/2024/04/ref-Q2708411-10-300x375.jpg",
-    model: "JAEGER-LECOULTRE REVERSO GRANDE TAILE ref Q2708411",
-    price: "5400",
+    title: "JLC REVERSO – NGUỒN GỐC VÀ LỊCH SỬ TỒN TẠI",
+    date: "November 22, 2021",
     key: 3,
-  },
-  {
-    url: "https://donghocodien.com/wp-content/uploads/2024/07/ref-78093-1-320x400.jpg",
-    url2: "	https://donghocodien.com/wp-content/uploads/2024/07/ref-78093-2-300x375.jpg",
-    model: "CARTIER TANK NORMALE ref 78093",
-    price: "5320",
-    key: 4,
   },
 ];
 
-export const ShopNowCarousel = () => {
+export const Container = () => {
   const swiperElRef = useRef(null);
 
   useEffect(() => {
@@ -75,10 +65,10 @@ export const ShopNowCarousel = () => {
       },
       breakpoints: {
         0: {
-          slidesPerView: 2,
+          slidesPerView: 1,
         },
         768: {
-          slidesPerView: 3,
+          slidesPerView: 2,
         },
       },
     };
@@ -101,20 +91,18 @@ export const ShopNowCarousel = () => {
 
   return (
     <div className="max-w-[1065px] w-full relative group">
-      <swiper-container ref={swiperElRef} speed="500" init="false" loop="true">
+      <swiper-container
+        ref={swiperElRef}
+        speed="500"
+        init="false"
+        loop="true"
+        pagination="false"
+      >
         {slideItem.map((item) => {
           return (
-            // <div key={item.key}>
             <swiper-slide key={item.key}>
-              <Slide
-                key={2}
-                url={item.url}
-                url2={item.url2}
-                price={item.price}
-                model={item.model}
-              />
+              <Slide url={item.url} title={item.title} date={item.date} />
             </swiper-slide>
-            // </div>
           );
         })}
       </swiper-container>
