@@ -10,17 +10,20 @@ module.exports = function (app) {
     next();
   });
 
-  app.post(
-    "/api/products",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.addProduct
-  );
+  // app.post(
+  //   "/api/products",
+  //   [authJwt.verifyToken, authJwt.isAdmin],
+  //   controller.addProduct
+  // );
+
+  app.post("/api/products", controller.addProduct);
 
   app.get("/api/products", controller.getProducts);
 
   app.get("/api/products/:id", controller.getProductById);
 
-  app.put("/api/products/:id", [authJwt.verifyToken], controller.updateProduct);
+  // app.put("/api/products/:id", [authJwt.verifyToken], controller.updateProduct);
+  app.put("/api/products/:id", controller.updateProduct);
 
   app.delete(
     "/api/products/:id",
@@ -28,11 +31,7 @@ module.exports = function (app) {
     controller.deleteProduct
   );
 
-  app.post(
-    "/api/products/import",
-    [authJwt.verifyToken],
-    controller.importProducts
-  );
+  app.post("/api/products/import", controller.importProducts);
 
   app.get("/api/products/category/:category", controller.getProductsByCategory);
 };
