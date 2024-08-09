@@ -1,7 +1,44 @@
+"use client";
+
 import SelectGroupOne from "../../../../components/Admin/SelectGroup/SelectGroupOne";
 import Breadcrumb from "../../../../components/Breadcrumbs/Breadcrumb";
 import { Input } from "../../../../components/Admin/Input";
 import { Textarea } from "../../../../components/Admin/Textarea";
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await fetch(`http://localhost:8080/api/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "test nek",
+        price: 109.95,
+        description:
+          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+        category: "64e2f5d6484089a92b4a59f6",
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        rating: {
+          rate: 3.9,
+          count: 120,
+        },
+      }),
+    });
+    const data = await response.json();
+    console.log("data: ", data);
+
+    if (response.status === 201) {
+      alert("Product created successfully!");
+    } else {
+      alert("Failed to create product. Please try again.");
+    }
+  } catch (error) {
+    alert("create failcc");
+    console.log(error);
+  }
+};
 
 export default function ProductPage() {
   return (
@@ -55,7 +92,11 @@ export default function ProductPage() {
                   </div>
                 </div>
 
-                <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                <button
+                  onClick={(e) => handleSubmit(e)}
+                  className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                  type="button"
+                >
                   Create Product
                 </button>
               </div>
