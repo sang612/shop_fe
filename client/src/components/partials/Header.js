@@ -8,11 +8,15 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { RealtimeClock } from "../RealtimeClock";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSub, setIsOpenSub] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const [isHomepage, setIsHomepage] = useState(false);
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -30,6 +34,7 @@ export const Header = () => {
   };
 
   useEffect(() => {
+    setIsHomepage(pathname === "/");
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -42,6 +47,8 @@ export const Header = () => {
         className={`h-auto w-full z-[60] ${
           isScrolled
             ? "fixed top-0 left-0 shadow-[1px_1px_10px_rgba(0,0,0,0.15)] animate-[stuckMoveDown_.6s]"
+            : !isHomepage
+            ? "relative bg-orange-950"
             : "absolute top-0 left-0"
         }`}
       >
@@ -83,7 +90,9 @@ export const Header = () => {
                         isScrolled ? "text-[#000]" : "text-[#fff]"
                       } font-[.85rem]`}
                     >
-                      13:48:33
+                      <RealtimeClock
+                        city={{ name: "zz", timezone: "Asia/Ho_Chi_Minh" }}
+                      />
                     </div>
                   </li>
                   <li className="text-white font-[.85rem] first:ml-0 last:mx-0 my-0 mx-[11px] inline-block list-none p-0 relative transition-colors duration-300">
@@ -139,15 +148,6 @@ export const Header = () => {
                     ${isScrolled ? "text-[#000]" : "text-[#fff]"}`}
                   >
                     <div className="flex flex-row items-center gap-x-[8px]">
-                      <a
-                        href="https://donghocodien.com"
-                        className={`no-underline touch-manipulation bg-transparent ${
-                          isScrolled ? "text-[#000]" : "text-[#fff]"
-                        }`}
-                      >
-                        VI
-                      </a>
-                      <span>|</span>
                       <a
                         href="https://spacetimevintagewatch.com/"
                         className={`no-underline touch-manipulation bg-transparent ${

@@ -4,7 +4,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { register } from "swiper/element/bundle";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { Slide } from "./Slide";
+import { ProductSlide } from "../ProductSlide";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -106,7 +106,7 @@ export const ShopNowCarousel = () => {
           return (
             // <div key={item.key}>
             <swiper-slide key={item.key}>
-              <Slide
+              <ProductSlide
                 key={2}
                 url={item.url}
                 url2={item.url2}

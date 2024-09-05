@@ -4,27 +4,81 @@ import { useRef, useEffect, useCallback } from "react";
 import { register } from "swiper/element/bundle";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import { ProductSlide } from "../ProductSlide";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import "../../css/image-slider.css";
 
-export const ImagePagination = ({ slideItem }) => {
+const slideItem = [
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/05/ref-1106-1418-4-320x400.jpg",
+    url2: "https://donghocodien.com/wp-content/uploads/2024/05/ref-1106-1418-3-300x375.jpg",
+    model: "BLANCPAIN VILLERET ULTRA-SLIM POWER RESERVE ref 1106-1418",
+    price: "6300",
+    key: 1,
+  },
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/04/ref-PAM372-10-300x375.jpg",
+    url2: "https://donghocodien.com/wp-content/uploads/2024/04/ref-PAM372-9-300x375.jpg",
+    model: "PANERAI LUMINOR 1950 3 DAYS POWER RESERVED ref PAM00372",
+    price: "5500",
+    key: 2,
+  },
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/04/ref-Q2708411-2-768x960.jpg",
+    url2: "https://donghocodien.com/wp-content/uploads/2024/04/ref-Q2708411-10-300x375.jpg",
+    model: "JAEGER-LECOULTRE REVERSO GRANDE TAILE ref Q2708411",
+    price: "5400",
+    key: 3,
+  },
+  {
+    url: "https://donghocodien.com/wp-content/uploads/2024/07/ref-78093-1-320x400.jpg",
+    url2: "	https://donghocodien.com/wp-content/uploads/2024/07/ref-78093-2-300x375.jpg",
+    model: "CARTIER TANK NORMALE ref 78093",
+    price: "5320",
+    key: 4,
+  },
+];
+
+export const SimilarProductsCarousel = () => {
   const swiperElRef = useRef(null);
 
   useEffect(() => {
     register();
 
     const params = {
+      injectStyles: [
+        `
+        .swiper-pagination-bullet {
+          width: 12px;
+          height: 12px;
+          text-align: center;
+          line-height: 12px;
+          font-size: 12px;
+          color: #fff;
+          opacity: 0.4;
+          background: #fff;
+        }
+
+        .swiper-pagination-bullet-active {
+          color: #fff;
+          background: #fff;
+          opacity: 1;
+        }
+        `,
+      ],
+      pagination: {
+        clickable: true,
+      },
       breakpoints: {
         0: {
-          slidesPerView: 4,
+          slidesPerView: 2,
         },
         768: {
-          slidesPerView: 4,
+          slidesPerView: 3,
         },
       },
     };
@@ -46,23 +100,20 @@ export const ImagePagination = ({ slideItem }) => {
   }, []);
 
   return (
-    <div className="w-full relative group hover:cursor-grab">
-      <swiper-container
-        init="false"
-        ref={swiperElRef}
-        class="mySwiper2"
-        space-between="20"
-        watch-slides-progress="true"
-        pagination="false"
-      >
+    <div className="max-w-[1065px] w-full relative group">
+      <swiper-container ref={swiperElRef} speed="500" init="false" loop="true">
         {slideItem.map((item) => {
           return (
-            <swiper-slide key={item.key} className="group/item">
-              <img
-                src={item.image}
-                className="transition-all duration-300 hover:translate-y-[-5px] translate-y-0"
+            // <div key={item.key}>
+            <swiper-slide key={item.key}>
+              <ProductSlide
+                url={item.url}
+                url2={item.url2}
+                price={item.price}
+                model={item.model}
               />
             </swiper-slide>
+            // </div>
           );
         })}
       </swiper-container>

@@ -4,11 +4,11 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
   ClerkProvider,
-  SignInButton, 
+  SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+  UserButton,
+} from "@clerk/nextjs";
 import { Header } from "../../components/partials/Header";
 import { Footer } from "../../components/partials/Footer";
 
@@ -23,11 +23,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={inter.className}>   
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
     </ClerkProvider>
   );
 }

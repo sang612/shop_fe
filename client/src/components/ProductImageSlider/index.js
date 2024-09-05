@@ -20,7 +20,7 @@ const slideItem = [
       "https://donghocodien.com/wp-content/uploads/2024/06/ref-SO35P100-2-1-768x960.jpg",
   },
   {
-    key: 1,
+    key: 12,
     image:
       "https://donghocodien.com/wp-content/uploads/2024/06/ref-SO35P100-2-3-768x960.jpg",
   },
