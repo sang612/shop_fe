@@ -140,7 +140,10 @@ export default function Articles() {
                   });
 
                   return (
-                    <li className="list-none text-left m-0 first:border-none border-t border-solid border-[#cecece]">
+                    <li
+                      className="list-none text-left m-0 first:border-none border-t border-solid border-[#cecece]"
+                      key={articles.id}
+                    >
                       <div className="p-[10px_0_10px] flex flex-row flex-nowrap w-full align-top">
                         <div className="mr-[15px] max-h-full">
                           <div className="m-0 w-[2.3em] h-[2.3em] table pointer-events-none ">
