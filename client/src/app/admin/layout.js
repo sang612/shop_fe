@@ -1,13 +1,6 @@
 import "../admin.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
 import DefaultLayout from "../../components/Admin/Layouts/DefaultLayout";
 
 config.autoAddCss = false;
@@ -19,12 +12,12 @@ export const metadata = {
 
 export default function AdminLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className="">
-          <DefaultLayout>{children}</DefaultLayout>
-        </body>
-      </html>
-    </ClerkProvider>
+    // <ClerkProvider>
+    <html lang="en">
+      <body className="">
+        <DefaultLayout>{children}</DefaultLayout>
+      </body>
+    </html>
+    // </ClerkProvider>
   );
 }

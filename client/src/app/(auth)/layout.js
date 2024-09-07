@@ -2,7 +2,6 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { ClerkProvider } from "@clerk/nextjs";
 
 config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
